@@ -1,0 +1,65 @@
+name: Daily 10 Shorts — Bitácora del Tiempo
+
+on:
+  # 10 triggers equidistantes = cada 2h24m
+  schedule:
+    - cron: "0 0 * * *"    # 00:00 UTC
+    - cron: "24 2 * * *"   # 02:24 UTC
+    - cron: "48 4 * * *"   # 04:48 UTC
+    - cron: "12 7 * * *"   # 07:12 UTC
+    - cron: "36 9 * * *"   # 09:36 UTC
+    - cron: "0 12 * * *"   # 12:00 UTC
+    - cron: "24 14 * * *"  # 14:24 UTC
+    - cron: "48 16 * * *"  # 16:48 UTC
+    - cron: "12 19 * * *"  # 19:12 UTC
+    - cron: "36 21 * * *"  # 21:36 UTC
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Fecha del evento (YYYY-MM-DD, opcional)"
+        required: false
+        default: ""
+
+jobs:
+  generate-short:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Trigger Render — Generate Single Short
+        env:
+          RENDER_URL: ${{ secrets.RENDER_URL }}
+          EVENT_DATE: ${{ github.event.inputs.date }}
+        run: |
+          DATE_BODY=""
+          if [ -n "$EVENT_DATE" ]; then
+            DATE_BODY=", \"date\": \"$EVENT_DATE\""
+          fi
+          
+          BODY="{\"source\": \"github_actions\"${DATE_BODY}}"
+          
+          echo "Triggering: $RENDER_URL/generate_single"
+          
+          RESPONSE=$(curl -s -o /tmp/response.json -w "%{http_code}" \
+            -X POST \
+            -H "Content-Type: application/json" \
+            -d "$BODY" \
+            --max-time 900 \
+            "$RENDER_URL/generate_single")
+          
+          echo "HTTP Status: $RESPONSE"
+          cat /tmp/response.json | python3 -m json.tool || cat /tmp/response.json
+          
+          if [ "$RESPONSE" -ne 200 ]; then
+            echo "ERROR: Pipeline falló con HTTP $RESPONSE"
+            exit 1
+          fi
+          
+          YT_URL=$(cat /tmp/response.json | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('youtube_url','N/A'))")
+          echo "✅ Short publicado: $YT_URL"
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "Pipeline falló. Revisar logs en Render dashboard."
+          echo "URL: ${{ secrets.RENDER_URL }}/health"

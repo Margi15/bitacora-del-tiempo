@@ -1,0 +1,201 @@
+{
+  "name": "Bitácora del Tiempo — Auto Short Publisher",
+  "flow": [
+    {
+      "id": 1,
+      "module": "builtin:BasicTrigger",
+      "version": 1,
+      "parameters": {},
+      "mapper": {},
+      "metadata": {
+        "designer": {"x": 0, "y": 0},
+        "displayName": "Scheduled Trigger"
+      }
+    },
+    {
+      "id": 2,
+      "module": "http:ActionSendData",
+      "version": 3,
+      "parameters": {
+        "handleErrors": true,
+        "useNewZLibDecompression": true
+      },
+      "mapper": {
+        "url": "{{YOUR_RENDER_URL}}/health",
+        "method": "GET",
+        "headers": [],
+        "qs": [],
+        "bodyType": "raw",
+        "parseResponse": true,
+        "timeout": 30,
+        "shareCookies": false,
+        "ca": "",
+        "reject_unauthorized": true,
+        "followRedirect": true,
+        "useQuerystring": false,
+        "gzip": true
+      },
+      "metadata": {
+        "designer": {"x": 300, "y": 0},
+        "displayName": "1. Health Check"
+      }
+    },
+    {
+      "id": 3,
+      "module": "builtin:BasicRouter",
+      "version": 1,
+      "parameters": {},
+      "mapper": {},
+      "metadata": {
+        "designer": {"x": 600, "y": 0},
+        "displayName": "Router: Server OK?"
+      },
+      "routes": [
+        {
+          "label": "Server OK (status=ok)",
+          "filter": {
+            "name": "Server is healthy",
+            "conditions": [
+              [{"a": "{{2.data.status}}", "b": "ok", "o": "text:equal"}]
+            ]
+          },
+          "flow": [
+            {
+              "id": 4,
+              "module": "http:ActionSendData",
+              "version": 3,
+              "parameters": {"handleErrors": true, "useNewZLibDecompression": true},
+              "mapper": {
+                "url": "{{YOUR_RENDER_URL}}/generate_single",
+                "method": "POST",
+                "headers": [{"name": "Content-Type", "value": "application/json"}],
+                "bodyType": "raw",
+                "body": "{\"source\": \"make_com\"}",
+                "parseResponse": true,
+                "timeout": 900
+              },
+              "metadata": {
+                "designer": {"x": 900, "y": -150},
+                "displayName": "2. Generate Short"
+              }
+            },
+            {
+              "id": 5,
+              "module": "builtin:BasicRouter",
+              "version": 1,
+              "parameters": {},
+              "metadata": {
+                "designer": {"x": 1200, "y": -150},
+                "displayName": "Router: Generation OK?"
+              },
+              "routes": [
+                {
+                  "label": "Success",
+                  "filter": {
+                    "name": "Video generated",
+                    "conditions": [
+                      [{"a": "{{4.data.status}}", "b": "ok", "o": "text:equal"}]
+                    ]
+                  },
+                  "flow": [
+                    {
+                      "id": 6,
+                      "module": "gmail:ActionSendEmail",
+                      "version": 1,
+                      "parameters": {},
+                      "mapper": {
+                        "to": "{{YOUR_EMAIL}}",
+                        "subject": "✅ Short publicado: {{4.data.title}}",
+                        "html": "<h2>✅ Short publicado exitosamente</h2><p><b>Título:</b> {{4.data.title}}</p><p><b>Año:</b> {{4.data.year}}</p><p><b>URL:</b> <a href='{{4.data.youtube_url}}'>{{4.data.youtube_url}}</a></p><p><b>Timestamp:</b> {{4.data.timestamp}}</p>"
+                      },
+                      "metadata": {
+                        "designer": {"x": 1500, "y": -300},
+                        "displayName": "3a. Email Éxito"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "label": "Error",
+                  "filter": {
+                    "name": "Generation failed",
+                    "conditions": [
+                      [{"a": "{{4.data.status}}", "b": "error", "o": "text:equal"}]
+                    ]
+                  },
+                  "flow": [
+                    {
+                      "id": 7,
+                      "module": "gmail:ActionSendEmail",
+                      "version": 1,
+                      "parameters": {},
+                      "mapper": {
+                        "to": "{{YOUR_EMAIL}}",
+                        "subject": "❌ Error en Bitácora del Tiempo",
+                        "html": "<h2>❌ Error en pipeline</h2><p><b>Error:</b> {{4.data.error}}</p><p><b>Timestamp:</b> {{now}}</p>"
+                      },
+                      "metadata": {
+                        "designer": {"x": 1500, "y": -50},
+                        "displayName": "3b. Email Error"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Server DOWN",
+          "filter": {
+            "name": "Server unhealthy",
+            "conditions": [
+              [{"a": "{{2.data.status}}", "b": "ok", "o": "text:notEqual"}]
+            ]
+          },
+          "flow": [
+            {
+              "id": 8,
+              "module": "gmail:ActionSendEmail",
+              "version": 1,
+              "parameters": {},
+              "mapper": {
+                "to": "{{YOUR_EMAIL}}",
+                "subject": "🔴 Render server DOWN — Bitácora del Tiempo",
+                "html": "<h2>🔴 Servidor no responde</h2><p>El servidor en Render está caído.</p><p>Verificar: {{YOUR_RENDER_URL}}/health</p>"
+              },
+              "metadata": {
+                "designer": {"x": 900, "y": 150},
+                "displayName": "Alerta Server Caído"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false,
+      "freshVariables": false
+    },
+    "designer": {"orphans": []},
+    "zone": "eu1.make.com"
+  },
+  "_instructions": {
+    "IMPORTANT": "Reemplaza {{YOUR_RENDER_URL}} con tu URL real de Render, ej: https://bitacora-del-tiempo.onrender.com",
+    "EMAIL": "Reemplaza {{YOUR_EMAIL}} con tu email real",
+    "SCHEDULE": "Configura el trigger con la frecuencia que quieras (cada 2h24m para 10 diarios)",
+    "IMPORT": "En Make.com: Create new scenario → Import Blueprint → pega este JSON",
+    "GMAIL": "Conecta tu cuenta de Gmail cuando Make.com lo solicite"
+  }
+}

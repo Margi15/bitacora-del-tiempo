@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: bitacora-del-tiempo
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: HF_TOKEN
+        sync: false
+      - key: YT_CLIENT_ID
+        sync: false
+      - key: YT_CLIENT_SECRET
+        sync: false
+      - key: YT_REFRESH_TOKEN
+        sync: false
+      - key: OUTPUT_DIR
+        value: /tmp/bitacora
+      - key: TTS_VOICE
+        value: es-MX-JorgeNeural
+      - key: TTS_RATE
+        value: "+10%"
+      - key: PORT
+        value: "8080"

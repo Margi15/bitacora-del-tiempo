@@ -1,0 +1,104 @@
+{
+  "version": "1.0",
+  "description": "Prompts de alta calidad para generar thumbnails con IA",
+  "ai_tools": ["Midjourney", "DALL-E 3", "Adobe Firefly", "Stable Diffusion XL"],
+
+  "global_quality_modifiers": [
+    "ultra high resolution",
+    "photorealistic",
+    "cinematic lighting",
+    "dramatic shadows",
+    "professional photography",
+    "8K quality",
+    "sharp focus",
+    "vivid colors"
+  ],
+
+  "styles": {
+    "dramatic_historical": "Epic historical scene with dramatic lighting, dark atmospheric background, strong contrast between light and shadows, documentary style photography, cinematic color grading",
+    "war_epic": "Dramatic war scene with military imagery, smoke and fire effects, heroic composition, desaturated with orange and gray tones, epic scale photography",
+    "solemn_historical": "Solemn and respectful historical composition, muted colors with single accent color, memorial aesthetic, dignified and powerful",
+    "space_epic": "Epic space scene, stars and nebulae, astronaut silhouette, NASA photography style, electric blue and gold color palette",
+    "dramatic_liberation": "Liberation and freedom theme, crowd scenes, raised fists, warm golden lighting, triumph and joy composition",
+    "dramatic_disaster": "Dramatic disaster scene, motion blur, emergency lighting, tension and urgency, high contrast photography",
+    "exploration_adventure": "Adventure and exploration aesthetic, vintage map elements, ships and horizons, warm sepia tones with vivid accents",
+    "liberation_celebration": "Victory celebration scene, confetti and crowds, warm golden lighting, joyful energy, wide angle composition",
+    "patriotic_historical": "Patriotic historical scene, flags and symbols, strong blue and red colors, heroic composition",
+    "solemn_memorial": "Memorial and remembrance aesthetic, candles or flowers, soft diffused lighting, somber and respectful",
+    "crime_noir": "Film noir aesthetic, dark shadows, rain-slicked streets, 1920s atmosphere, high contrast black and white with red accents",
+    "political_historical": "Political and governmental imagery, power and authority, formal composition, strong contrast",
+    "adventure_triumph": "Mountain summit triumph, extreme weather, climbers silhouette, dramatic sky, cold blue and white tones",
+    "economic_drama": "Financial crisis imagery, falling numbers, worried crowds, desaturated with harsh fluorescent lighting",
+    "environmental_hope": "Nature and environmental imagery, lush green and blue tones, hopeful golden light, global perspective",
+    "invention_triumph": "Inventor triumphant moment, workshop setting, warm incandescent light, steampunk aesthetic accents",
+    "civil_rights_epic": "Civil rights movement imagery, diverse crowd, raised signs, warm summer light, powerful and dignified",
+    "civil_rights_portrait": "Dignified portrait style, strong and determined expression, simple background, powerful lighting",
+    "political_tragedy": "Tragic political moment, somber and heavy atmosphere, dark tones with spotlight, newsreel aesthetic",
+    "military_operation": "Military operation aesthetic, night vision green tones, tactical silhouettes, tension and precision",
+    "natural_disaster": "Raw natural power, massive scale, water or earthquake imagery, desaturated with teal and orange",
+    "nuclear_disaster": "Nuclear and radiation imagery, warning signs, eerie green glow, abandoned industrial setting",
+    "space_tragedy": "Space tragedy aesthetic, fire against black space, debris and explosion, somber yet majestic",
+    "pop_culture_epic": "Pop culture iconic imagery, vibrant colors, iconic visual elements, nostalgic yet epic",
+    "aviation_triumph": "Aviation triumph scene, aircraft breaking sound barrier, speed lines and clouds, patriotic military aesthetic",
+    "war_occupation": "Occupied city scene, military presence, defiant civilians, gray and oppressive atmosphere with single point of hope",
+    "political_historic": "Monumental political change, falling symbols of power, masses of people, symbolic imagery"
+  },
+
+  "short_prompt_template": "Create a vertical thumbnail (1080x1920 pixels) for a YouTube Short about the historical event: '{title}' ({year}). Style: {base_style}. Include: large bold text at top saying '{day} DE {month_name}' in Spanish, a central dramatic image representing the event, intense cinematic lighting with strong shadows, deep saturated colors (red, black, gold), the text '{emotion}' feeling throughout. The design should be eye-catching on a mobile screen, with a central focal point that draws the eye immediately. NO text at bottom (reserved for YouTube interface). High contrast, ultra-detailed, photorealistic quality.",
+
+  "long_prompt_template": "Create a horizontal thumbnail (1280x720 pixels) for a YouTube video about the historical event: '{title}' ({year}). Style: {base_style}. Include: left side text block with 'UN DÍA COMO HOY' in small text and '{title}' as the main title in large bold white text, right side with a dramatic photorealistic image of the event or its key figures, a strong visual dividing element between text and image, intense and dramatic color grading (deep reds, blacks, golds). The overall feeling should be {emotion}, cinematic, documentary style. Ultra high resolution, sharp, professional YouTube thumbnail design. The image should be compelling enough that someone stops scrolling.",
+
+  "text_overlays": {
+    "shorts_header": {
+      "text": "{day} DE {month_name}",
+      "font": "Montserrat Black",
+      "size": "120px",
+      "color": "#FFFFFF",
+      "background": "rgba(192,57,43,0.85)",
+      "position": "top-center",
+      "padding": "20px"
+    },
+    "shorts_year_badge": {
+      "text": "{year}",
+      "font": "Montserrat Bold",
+      "size": "60px",
+      "color": "#F39C12",
+      "position": "below-header"
+    },
+    "long_date_tag": {
+      "text": "UN DÍA COMO HOY",
+      "font": "Montserrat SemiBold",
+      "size": "28px",
+      "color": "#F39C12",
+      "position": "top-left"
+    },
+    "long_title": {
+      "max_words_per_line": 5,
+      "font": "Montserrat Black",
+      "size": "72px",
+      "color": "#FFFFFF",
+      "position": "left-center"
+    }
+  },
+
+  "canva_template_instructions": {
+    "shorts": [
+      "1. Abre Canva y crea diseño 1080x1920",
+      "2. Fondo: imagen histórica del evento (busca en Unsplash o Wikipedia Commons)",
+      "3. Overlay: rectángulo negro con opacidad 50%",
+      "4. Bloque rojo (#C0392B) en la parte superior",
+      "5. Texto de fecha: blanco, Montserrat Black, 120px",
+      "6. Título del evento: blanco, Montserrat Bold, 80px, máx 3 líneas",
+      "7. Logo del canal en esquina inferior derecha"
+    ],
+    "long_video": [
+      "1. Abre Canva y crea diseño 1280x720",
+      "2. Divide en dos mitades: izquierda (texto) y derecha (imagen)",
+      "3. Fondo izquierdo: negro (#1a1a1a)",
+      "4. Imagen derecha: evento histórico con overlay mínimo",
+      "5. Etiqueta 'UN DÍA COMO HOY' en amarillo (#F39C12)",
+      "6. Título del evento: blanco, Montserrat Black, máx 4 líneas",
+      "7. Línea diagonal roja entre las dos secciones"
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "channel_name": "Bitácora del Tiempo",
+  "channel_url": "https://www.youtube.com/@Bit%C3%A1coradelTiempoo",
+  "channel_id": "REEMPLAZA_CON_TU_CHANNEL_ID",
+
+  "api_credentials": {
+    "api_key": "TU_API_KEY_AQUI",
+    "client_id": "TU_CLIENT_ID_AQUI",
+    "client_secret": "TU_CLIENT_SECRET_AQUI",
+    "redirect_uri": "http://localhost:8080",
+    "scopes": [
+      "https://www.googleapis.com/auth/youtube.upload",
+      "https://www.googleapis.com/auth/youtube"
+    ]
+  },
+
+  "upload_defaults": {
+    "privacy_status": "public",
+    "made_for_kids": false,
+    "language": "es",
+    "category_id": "27",
+    "license": "youtube"
+  },
+
+  "short_settings": {
+    "title_template": "Un día como hoy: {event_title} ({year}) #Shorts",
+    "publish_time": "09:00",
+    "playlist_id": "REEMPLAZA_CON_TU_PLAYLIST_SHORTS_ID",
+    "tags_base": ["Shorts", "UnDiaComoHoy", "Historia", "BitácoraDelTiempo", "HistoriaUniversal"],
+    "end_screen": false
+  },
+
+  "long_video_settings": {
+    "title_template": "Un día como hoy: {event_title} | Bitácora del Tiempo",
+    "publish_time": "12:00",
+    "playlist_id": "REEMPLAZA_CON_TU_PLAYLIST_VIDEOS_ID",
+    "tags_base": ["UnDiaComoHoy", "Historia", "BitácoraDelTiempo", "HistoriaUniversal", "DocuHistoria"],
+    "end_screen": true,
+    "cards": true
+  },
+
+  "branding": {
+    "intro_seconds": 3,
+    "outro_seconds": 20,
+    "watermark": "assets/logo.png",
+    "color_primary": "#C0392B",
+    "color_secondary": "#2C3E50",
+    "font": "Montserrat Bold"
+  },
+
+  "notes": [
+    "Para obtener tu API Key: https://console.developers.google.com",
+    "Habilita 'YouTube Data API v3' en Google Cloud Console",
+    "El channel_id lo encuentras en: YouTube Studio > Personalización > Información básica"
+  ]
+}

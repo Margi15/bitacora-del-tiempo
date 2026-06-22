@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "timezone": "America/Mexico_City",
+  "description": "Calendario de tareas automáticas de Bitácora del Tiempo",
+
+  "daily_schedule": [
+    {
+      "time": "06:00",
+      "task": "research",
+      "script": "src/research/fetch_events.py",
+      "description": "Buscar eventos históricos del día",
+      "enabled": true
+    },
+    {
+      "time": "06:30",
+      "task": "generate_short_script",
+      "script": "src/scripts/generate_scripts.py --type short",
+      "description": "Generar guion para YouTube Short",
+      "enabled": true
+    },
+    {
+      "time": "07:00",
+      "task": "generate_long_script",
+      "script": "src/scripts/generate_scripts.py --type long",
+      "description": "Generar guion para Video largo",
+      "enabled": true
+    },
+    {
+      "time": "07:30",
+      "task": "generate_captions",
+      "script": "src/scripts/generate_scripts.py --captions-only",
+      "description": "Crear captions y descripciones",
+      "enabled": true
+    },
+    {
+      "time": "08:00",
+      "task": "thumbnail_prompts",
+      "script": "main.py --step 3",
+      "description": "Generar prompts para thumbnails con IA",
+      "enabled": true
+    }
+  ],
+
+  "weekly_tasks": [
+    {
+      "day": "sunday",
+      "time": "20:00",
+      "task": "weekly_review",
+      "description": "Revisar métricas de la semana y ajustar estrategia",
+      "enabled": true
+    }
+  ],
+
+  "publishing_schedule": {
+    "shorts": {
+      "time": "09:00",
+      "days": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+      "frequency": "daily",
+      "note": "Publicar manualmente o configurar YouTube API"
+    },
+    "long_videos": {
+      "time": "12:00",
+      "days": ["monday", "wednesday", "friday"],
+      "frequency": "3x weekly",
+      "note": "Videos largos solo lunes, miércoles y viernes para no saturar"
+    }
+  },
+
+  "content_calendar": {
+    "monday": {"theme": "Guerras y conflictos", "emoji": "⚔️"},
+    "tuesday": {"theme": "Ciencia y tecnología", "emoji": "🚀"},
+    "wednesday": {"theme": "Política y poder", "emoji": "🏛️"},
+    "thursday": {"theme": "Derechos y libertad", "emoji": "✊"},
+    "friday": {"theme": "Cultura y sociedad", "emoji": "🎭"},
+    "saturday": {"theme": "Desastres y tragedias", "emoji": "💔"},
+    "sunday": {"theme": "Hitos y logros", "emoji": "🏆"}
+  }
+}

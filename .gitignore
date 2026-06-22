@@ -1,0 +1,27 @@
+# Secrets
+.env
+*.token.json
+yt_token.json
+client_secret*.json
+
+# Build
+__pycache__/
+*.pyc
+*.pyo
+.Python
+
+# Output
+/tmp/
+output/
+*.mp4
+*.wav
+*.jpg
+*.jpeg
+*.png
+!.github/**
+
+# Fonts cache
+*.ttf
+
+# Render
+.render-buildpacks.json

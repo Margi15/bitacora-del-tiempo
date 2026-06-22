@@ -1,0 +1,137 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Plantillas de guiones para Bitácora del Tiempo",
+    "canal": "Bitácora del Tiempo"
+  },
+  "short_template": {
+    "name": "YouTube Short - 30 a 60 segundos",
+    "format": "vertical 9:16",
+    "duration_seconds": "30-60",
+    "sections": {
+      "hook": {
+        "duration_seconds": 5,
+        "template": "¿Sabías que un día como hoy, {day} de {month_name}, {short_desc}?",
+        "notes": "Voz enérgica, pausa de 1 segundo después de la pregunta. Texto grande en pantalla.",
+        "emoji": "{hook_emoji}",
+        "example": "¿Sabías que un día como hoy, 14 de junio de 1940, los nazis entraron a París? 😰"
+      },
+      "context": {
+        "duration_seconds": 20,
+        "template": "{context_line_1}\n\n{context_line_2}\n\n{context_line_3}",
+        "notes": "3 frases cortas. Máximo 15 palabras por frase. Subtítulos grandes en pantalla.",
+        "example": "Francia cayó en solo 46 días ante la Blitzkrieg nazi.\n\nLa Torre Eiffel fue cerrada por los ocupantes.\n\nMillones de parisinos huyeron antes de la llegada alemana."
+      },
+      "fun_fact": {
+        "duration_seconds": 10,
+        "template": "¿El dato más impactante? {fun_fact}",
+        "notes": "Cambio de ritmo. Texto en color diferente. Efecto de sonido de impacto.",
+        "example": "¿El dato más impactante? Hitler visitó París como turista al día siguiente."
+      },
+      "cta": {
+        "duration_seconds": 5,
+        "template": "Suscríbete 🔔 para más historias que la escuela no te enseñó.\n#UnDiaComoHoy #{category_hashtag} #Bitácora",
+        "notes": "Animación de campana. Logo del canal. Fondo de color del canal.",
+        "example": "Suscríbete 🔔 para más historias que la escuela no te enseñó.\n#UnDiaComoHoy #WW2 #Bitácora"
+      }
+    },
+    "full_script_template": "GANCHO (0-5 seg):\n¿Sabías que un día como hoy, {day} de {month_name} de {year}, {short_desc}? {hook_emoji}\n\nCONTEXTO (5-25 seg):\n{context_line_1}\n{context_line_2}\n{context_line_3}\n\nDATO IMPACTANTE (25-35 seg):\n¿El dato más curioso? {fun_fact}\n\nCTA (35-40 seg):\nSuscríbete 🔔 y activa la campana para no perderte NADA de la historia.",
+    "visual_notes": {
+      "text_position": "centro superior",
+      "font_size": "muy grande (mínimo 80px)",
+      "background": "imagen histórica del evento con overlay oscuro 40%",
+      "captions": "automáticos + personalizados en post",
+      "transition": "corte rápido entre secciones"
+    }
+  },
+  "long_video_template": {
+    "name": "Video largo YouTube - 5 a 10 minutos",
+    "format": "horizontal 16:9",
+    "duration_minutes": "5-10",
+    "sections": {
+      "intro": {
+        "duration_seconds": 30,
+        "template": "Un día como hoy, {day} de {month_name} de {year}, ocurrió algo que cambió {region} para siempre.\n\n{short_desc}.\n\nEsta es la historia completa. Quédate hasta el final porque hay un dato que muy pocos conocen.",
+        "notes": "Música épica de fondo. Imágenes o ilustraciones del evento. Voz en off con emoción controlada.",
+        "example": "Un día como hoy, 14 de junio de 1940, ocurrió algo que cambió Europa para siempre.\n\nLas tropas alemanas entraron a París sin disparar un tiro.\n\nEsta es la historia completa."
+      },
+      "historical_context": {
+        "duration_minutes": "2-3",
+        "template": "Para entender lo que pasó ese {day} de {month_name}, necesitamos retroceder en el tiempo...\n\n[CONTEXTO HISTÓRICO: Explicar el mundo antes del evento, las causas, los actores principales]\n\nAsí estaban las cosas cuando llegó el {day} de {month_name} de {year}.",
+        "notes": "Mapas, fotos de época, ilustraciones. Música de fondo más tenue. Narración detallada pero accesible.",
+        "sub_sections": [
+          "El mundo antes del evento",
+          "Los actores principales",
+          "Las tensiones que llevaron a este momento"
+        ]
+      },
+      "main_event": {
+        "duration_minutes": "3-5",
+        "template": "Y entonces llegó ese fatídico {day} de {month_name} de {year}...\n\n[DESCRIPCIÓN DETALLADA DEL EVENTO]\n\nEn tiempo real, así se desarrollaron los hechos:\n\n[LÍNEA DE TIEMPO DETALLADA]\n\nLo que la gente presente vivió en ese momento fue...\n\n[TESTIMONIOS O RELATOS DE PRIMERA MANO]",
+        "notes": "Sección principal. Más imágenes, mapas animados si es necesario. Máxima emoción en la narración.",
+        "sub_sections": [
+          "El inicio del evento",
+          "El desarrollo hora a hora",
+          "El clímax o momento decisivo",
+          "Las reacciones inmediatas"
+        ]
+      },
+      "consequences": {
+        "duration_minutes": "1-2",
+        "template": "Las consecuencias de {short_title} fueron...\n\n[CONSECUENCIAS A CORTO PLAZO]\n\n[CONSECUENCIAS A LARGO PLAZO]\n\nHoy, {years_since} años después, el legado de ese {day} de {month_name} sigue siendo...",
+        "notes": "Música más reflexiva. Fotos 'después' del evento. Conectar con el presente.",
+        "sub_sections": [
+          "Consecuencias inmediatas",
+          "Impacto a largo plazo",
+          "El legado hoy"
+        ]
+      },
+      "fun_fact_section": {
+        "duration_seconds": 60,
+        "template": "Antes de terminar, el dato que casi nadie conoce sobre este evento:\n\n{fun_fact}\n\nEsto demuestra que la historia siempre tiene una capa más de profundidad.",
+        "notes": "Cambio de ritmo. Efecto visual diferente. Música curiosa/sorpresiva.",
+        "example": "Antes de terminar, el dato que casi nadie conoce:\n\nHitler visitó París como turista al día siguiente de la ocupación."
+      },
+      "outro": {
+        "duration_seconds": 30,
+        "template": "Y así fue como el {day} de {month_name} de {year} quedó grabado en la historia.\n\n¿Qué otro evento histórico te gustaría que exploráramos? Déjamelo en los comentarios. 👇\n\nSi este video te pareció interesante, suscríbete 🔔 y activa la campana para no perderte nada.\n\nHasta la próxima bitácora del tiempo.",
+        "notes": "Música del canal. Pantalla final con otros videos sugeridos. Logo del canal.",
+        "example": "¿Qué otro evento histórico te gustaría que exploráramos? Déjamelo en los comentarios. 👇"
+      }
+    },
+    "full_script_structure": [
+      "00:00 - Intro (gancho del evento)",
+      "00:30 - Contexto histórico (el mundo antes)",
+      "02:30 - El evento del día (narración detallada)",
+      "06:00 - Consecuencias e impacto",
+      "08:00 - El dato que nadie sabe",
+      "09:00 - Outro y CTA"
+    ]
+  },
+  "caption_templates": {
+    "short_caption": {
+      "template": "🗓️ Un día como hoy, {day} de {month_name} de {year}...\n\n{short_desc} {hook_emoji}\n\n{fun_fact}\n\n¿Lo sabías? 👇\n\n{hashtags}",
+      "max_chars": 500,
+      "platform": "YouTube Shorts / Instagram Reels / TikTok"
+    },
+    "long_caption": {
+      "template": "📅 UN DÍA COMO HOY — {day} de {month_name} de {year}\n\n{short_desc}\n\n{long_desc_paragraph_1}\n\n{long_desc_paragraph_2}\n\n💡 El dato que nadie sabe: {fun_fact}\n\n¿Qué otro evento histórico debería cubrir? Cuéntame en los comentarios 👇\n\n🔔 Suscríbete para más historia diaria\n\n{hashtags}",
+      "max_chars": 5000,
+      "platform": "YouTube Videos"
+    }
+  },
+  "hashtag_bank": {
+    "universal": ["#UnDiaComoHoy", "#Historia", "#BitácoraDelTiempo", "#HistoriaUniversal", "#Hoy"],
+    "by_category": {
+      "militar": ["#Guerra", "#Historia Militar", "#WW2", "#Ejército"],
+      "política": ["#Política", "#Historia Política", "#Gobierno", "#Revolución"],
+      "ciencia y tecnología": ["#Ciencia", "#Tecnología", "#Invención", "#Descubrimiento"],
+      "derechos civiles": ["#DerechosCiviles", "#IgualdadDeDerechos", "#Justicia", "#Activismo"],
+      "desastre": ["#Tragedia", "#Desastre", "#Catástrofe"],
+      "exploración": ["#Exploración", "#Aventura", "#Descubrimiento"],
+      "cultura": ["#Cultura", "#Arte", "#Entretenimiento", "#CinePop"],
+      "economía": ["#Economía", "#Crisis", "#Finanzas"],
+      "medio ambiente": ["#MedioAmbiente", "#Ecología", "#Naturaleza"]
+    }
+  }
+}
