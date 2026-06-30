@@ -1,13 +1,26 @@
+# Server
 flask==3.0.3
 gunicorn==22.0.0
+
+# Google / YouTube
 google-api-python-client==2.137.0
+google-auth==2.32.0
+google-auth-httplib2==0.2.0
+google-auth-oauthlib==1.2.1
+
+# Gemini AI
 google-generativeai==0.7.2
+
+# TTS
 edge-tts>=6.1.19
 gTTS==2.5.1
-moviepy==1.0.3
+
+# Image
 Pillow==10.4.0
 numpy==1.26.4
-imageio==2.34.2
-imageio-ffmpeg==0.5.1
+
+# HTTP
 requests==2.32.3
+
+# Utils
 python-dotenv==1.0.1
