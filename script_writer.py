@@ -14,7 +14,7 @@ from typing import Optional
 log = logging.getLogger(__name__)
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
-GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
+GEMINI_URL = "https://generativelanguage.googleapish.com/v1beta/models/gemini-2.0-flash:generateContent"
 
 HOOK_STYLES = [
     "tensión_narrativa",   # "Nadie lo vio venir..."
